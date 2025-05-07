@@ -9,6 +9,11 @@ load_dotenv()
 class SymptomChecker:
     def __init__(self):
         self.client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+        #self.chat = self.client.chats.create(model='gemini-2.0-flash', history=[])
+
+    #def get_symptoms(self, input_text):
+    #    response = self.chat.send_message(input_text)
+    #    return response.text
 
     def get_response(self, symptoms):
         contents = types.Content(
@@ -28,11 +33,12 @@ class SymptomChecker:
             )
         )
         #return response.text
-        return response.to_json_dict()['parsed']['likely_medical_conditions']
+        return response.to_json_dict()['parsed']#['likely_medical_conditions']
 
 input_prompt = '''
-You are acting as a healthcare adviser and your job is to:
+You are acting as an experienced internist to whom patients come for diagnosis. Please perform the tasks listed below.
 1. Analyze the symptoms given by the user.
 2. Identify likely medical conditions.
-3. Recommend the type of specialist suited for the patient
+3. Create a list of recommended home remedies to remedy the symptoms.
+4. Recommend the type of specialist suited for the patient.
 '''

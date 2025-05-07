@@ -1,5 +1,7 @@
 from pydantic import  BaseModel
 
 class HealthcareAdvice(BaseModel):
-    likely_medical_conditions: str
-    type_of_specialist: str
+    symptoms: list[str]
+    likely_medical_conditions: list[str]
+    recommendations: list[str]
+    type_of_specialist: list[str]
