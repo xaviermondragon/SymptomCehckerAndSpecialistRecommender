@@ -17,5 +17,4 @@ submit = st.button('Ask for recommendations')
 symptom_checker = SymptomChecker()
 
 if submit:
-    #st.write(symptom_checker.get_symptoms(symptoms))
     st.write(symptom_checker.get_response(symptoms))
