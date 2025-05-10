@@ -3,9 +3,9 @@
 GenAI-powered healthcare Assistant
 
 ## Description
-This project is an app which leverages Google's Gemimi large 
-language models to interpret natural language health 
-descriptions and accordingly:
+This project is a [streamlit](https://streamlit.io/) app which
+leverages Google's Gemimi large language models to interpret 
+natural language health descriptions and accordingly:
 
 - Interprets and summarizes the reported symptoms
 - Indentifies likely medical conditions
@@ -34,7 +34,7 @@ It is recommended to create a [Python virtual environment](https://docs.python.o
 [activate it](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) 
 and install the dependencies there using the following command:
 ````commandline
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ````
 
 
@@ -43,5 +43,14 @@ Navigate to the root directory of this project, activate the
 virtual environment where the dependencies are installed and 
 run the app with the following command:
 ````commandline
-$ python main.py
+python main.py
 ````
+
+### Architecture
+- The web interface, where the user can write his symptoms, and where the response of
+the model is shown is contained in the file 
+`app.py`.
+- The GenAI model is defined in the class `symptom_checker.py`
+- The model is prompted to generate a response with predefined fields which are defined 
+as a [pydantic](https://docs.pydantic.dev/latest/) model defined in the 
+`HealthCareAdvice` class.

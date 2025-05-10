@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from symptom_checker import SymptomChecker
 
@@ -14,7 +15,11 @@ st.subheader('Symptom Checker and Specialist Recommender')
 symptoms = st.text_area(invitation_text, key='input')
 submit = st.button('Ask for recommendations')
 
-symptom_checker = SymptomChecker()
+api_key = os.getenv('GEMINI_API_KEY')
+if not api_key:
+    st.error('GEMINI_API_KEY not found. Please export it as an environment variable or add it in the .env file')
+
+symptom_checker = SymptomChecker(api_key)
 
 if submit:
     st.write(symptom_checker.get_response(symptoms))

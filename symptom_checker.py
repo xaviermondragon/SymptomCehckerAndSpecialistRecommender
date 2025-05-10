@@ -23,8 +23,9 @@ response_text = '''
 load_dotenv()
 
 class SymptomChecker:
-    def __init__(self):
-        self.client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+    def __init__(self, api_key):
+
+        self.client = genai.Client(api_key=api_key)
         #self.chat = self.client.chats.create(model='gemini-2.0-flash', history=[])
 
     def get_response(self, symptoms):
